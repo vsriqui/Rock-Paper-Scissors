@@ -6,7 +6,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    width: 70vw;
+    height: 100vh;
+    background-color: #CBC3E3;
   }
 
   body {
@@ -19,25 +21,58 @@
     text-align: center;
     color: white;
   }
+
+  h1, {
+    margin-top: 0px;
+  }
   
   .user, .computer {
    background-color: #C3B1E1;
-   width: 25vw;
+   width: 15vw;
    height: 100vh;
+   text-align: center;
   }
   
-  main {
-    width: 50vw;
-    height: 100vh;
-    background-color: #CBC3E3;
-  }
+
 
   .hidden {
     display: none
   }
 
-  .play__buttons{
-    display: inline;
-  }
+ .center__play1, .center__play2{
+  width: 70vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+ }
 
- 
+
+
+
+
+#difficult, #classic {
+  display: inline;
+  background-color: purple;
+  width: 20vw;
+  height: 20vh;
+  
+  
+  color: white;
+  font-size: 18px;
+}
+
+#difficult {
+  height: 27vh;
+}
+
+
+
+.user_reset {
+  display: none;
+}
+
+#0, #1, #2, 3#, #4, 5# {
+  display: inline
+}

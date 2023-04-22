@@ -1,31 +1,32 @@
 
 <html lang="en">  
-<head> 
-<link rel="stylesheet" type="text/css" href="./styles.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">    
-<title>RockPaperScissorsDeluxe</title>
-</head>
-<body>
-<section class="user">
-  <h2 class="user__token"></h2>
-  <h2 class="user__name"></h2>
-  <h2 class="user__wins"></h2>
-</section>
-<main class="center">
-  <h1>Rock, Paper, Scissors</h1>
-  <section class ="center__play">
-    <button class ="play__button" id="classic">CLASSIC</button>
-  </section>
-  <section class ="center__play">
-    <button class ="play__button" id="difficult">DIFFICULT</button>
-  </section>
-</main>
-<section class="computer">
-  <h2 class="computer__token"></h2>
-  <h2 class="computer__name"></h2>
-  <h2 class="computer__wins"></h2>
-</section>
-<script src="./main.js"></script>
-</body>
+  <head> 
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>RockPaperScissorsDeluxe</title>
+  </head>
+  <body>
+    <section class="user">
+      <h2 class="user__token"></h2>
+      <h2 class="user__name"></h2>
+      <h2 class="user__wins"></h2>  
+      <button class="user__reset" id="reset">CHANGE GAME?</button>
+    </section>
+    <main class="center">
+      <h1>Rock, Paper, Scissors</h1>      
+      <section class ="center__play1">
+        <button class ="play__button" id="classic">CLASSIC <br><br> 🪨 > ✂️ <br> 📄 > 🪨 <br> ✂️ > 📄 </button>
+      </section>
+      <section class ="center__play2">
+        <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📄 > 🪨 & 👽 <br> ✂️ > 📄 & 🦎 <br> 🦎 > 📄 & 👽 <br> 👽 > 📄 & 🪨 <br></button>
+      </section>
+    </main>
+    <section class="computer">
+      <h2 class="computer__token"></h2>
+      <h2 class="computer__name"></h2>
+      <h2 class="computer__wins"></h2>
+    </section>
+    <script src="./main.js"></script>
+  </body>
 </html>
