@@ -10,6 +10,7 @@ var classicButton = document.getElementById("classic");
 var difficultButton = document.getElementById("difficult");
 var reset = document.querySelector(".user__reset");
 var centerPlay2 = document.querySelector(".center__play2");
+var centerPlay1 = document.querySelector(".center__play1");
 
 var classic = ['🪨', '📄', '✂️'];
 var difficult = ['🪨', '📄', '✂️', '🦎', '👽'];
@@ -18,12 +19,19 @@ onload = function() {
 userPlayer = createPlayer('Human', '👩🏻', 0);
 computerPlayer = createPlayer('Computer', '💻', 0);
 updateUsers();
+gameModes();
 }
 
 reset.onclick = function() {
-    (classicButton.style.display ="inline") && (difficultButton.style.display="inline");
-        console.log('hey')
-    reset.style.display = "none";    
+    // (classicButton.style.display ="inline") && (difficultButton.style.display="inline");
+    console.log('hey')
+    reset.style.display = "none";
+    gameModes();    
+}
+
+function gameModes(){
+    centerPlay1.innerHTML ='<button class ="play__button" id="classic">CLASSIC <br><br> 🪨 > ✂️ <br> 📄 > 🪨 <br> ✂️ > 📄 </button>';
+    centerPlay2.innerHTML = ' <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📄 > 🪨 & 👽 <br> ✂️ > 📄 & 🦎 <br> 🦎 > 📄 & 👽 <br> 👽 > 📄 & 🪨 <br></button>';
 }
 
 bubbler.forEach(b => b.addEventListener('click', (e) => {
@@ -31,14 +39,23 @@ bubbler.forEach(b => b.addEventListener('click', (e) => {
     if (e.target.id === 'classic'){
         console.log('HOWDY DO')
         game = createGame(classic);
-        (classicButton.style.display ="none") && (difficultButton.style.display="none");
-        reset.style.display = "inline";  
+        // (classicButton.style.display ="none") && (difficultButton.style.display="none");
+        centerPlay2.innerHTML = '';
+        centerPlay1.innerHTML = '';
+        reset.style.display = "inline";
+        displayFighters();   
     } else if (e.target.id === 'difficult'){
         console.log('Nuh, Uhh')
         game = createGame(difficult);
-        (classicButton.style.display ="none") && (difficultButton.style.display="none");
+        centerPlay2.innerHTML = '';
+        centerPlay1.innerHTML = '';
+        // (classicButton.style.display ="none") && (difficultButton.style.display="none");
         reset.style.display = "inline";
-        displayChoices()  
+        displayFighters();  
+    } else if (e.target.id === '🪨' || e.target.id === '📄' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
+        console.log('wwowwwooooh');
+        game.player1.choice = e.target.id;
+        aiChoice();
     }
     
   }))
@@ -77,8 +94,8 @@ function hide(element) {
     element.classList.remove("hidden")
 }
 
-function computerChoice() {
-    var random = Math.floor(Math.random() * game.gameType.length) + 1
+function aiChoice() {
+    var random = Math.floor(Math.random() * game.gameType.length) + 1;
     if (random === 1) {
         game.player2.choice = '🪨'
       }
@@ -98,3 +115,20 @@ function computerChoice() {
     }
 
   
+// function display() {
+//     console.log("jibbajabba")
+    
+//     centerPlay2.innerHTML = `<button id='0'> ${game.gameType[0]} </button>`
+// }
+
+function displayFighters() {
+    console.log("jibbajabba")
+    for (i=0; i<game.gameType.length; i++) {
+        if (game.gameType[i] === '🪨' || game.gameType[i] === '📄' || game.gameType[i] === '✂️') {
+    centerPlay1.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`
+        }
+        if (game.gameType[i] === '🦎' || game.gameType[i] === '👽') {
+            centerPlay2.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`
+        }
+    }
+}
