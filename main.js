@@ -24,7 +24,6 @@ onload = function() {
 };
 
 reset.onclick = function() {    
-  reset.style.display = "none";
   gameModes();
   resetMessage();    
 };
@@ -38,7 +37,7 @@ delegator.forEach(b => b.addEventListener('click', (e) => {
     game.player1.choice = e.target.id;
     aiChoice();
     decideWinner();
-  }
+  } 
 }));
 
 // Functions and Event Handlers //
@@ -58,12 +57,6 @@ function showChangeGame() {
   reset.style.display = 'inline';
 };
 
-function gameModes() {
-  centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
-  centerPlay2.innerHTML = '<button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
-  reset.style.display = 'none';
-};
-
 function createPlayer(name, token, wins) {
   return {
     name: name,
@@ -81,6 +74,12 @@ function createGame(gameType) {
   }
 };
 
+function gameModes() {
+  centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
+  centerPlay2.innerHTML = '<button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
+  reset.style.display = 'none';
+};
+
 function updateUsers() {
   userToken.innerText = userPlayer.token;
   userName.innerText = userPlayer.name;
@@ -88,21 +87,6 @@ function updateUsers() {
   computerToken.innerText = computerPlayer.token;
   computerName.innerText = computerPlayer.name;
   computerWins.innerText = `Wins: ${computerPlayer.wins}`;
-};
-
-function aiChoice() {
-  var random = Math.floor(Math.random() * game.gameType.length) + 1;
-  if (random === 1) {
-    game.player2.choice = '🪨';
-  } else if (random === 2) {
-    game.player2.choice = '📰';
-  } else if (random === 3) {
-    game.player2.choice = '✂️';
-  } else if (random === 4) {
-    game.player2.choice = '🦎';
-  } else if (random === 5) {
-    game.player2.choice = '👽';
-  }
 };
 
 function displayFighters() {
@@ -114,6 +98,11 @@ function displayFighters() {
       centerPlay2.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
     }
   }
+};
+
+function aiChoice() {
+  var random = Math.floor(Math.random() * game.gameType.length);
+  game.player2.choice = game.gameType[random];
 };
 
 function decideWinner() {
@@ -170,20 +159,16 @@ function resetBoard() {
   reset.style.display = "none";
   setTimeout(clearBoard, 2500);
   setTimeout(fighterMessage, 2510);
-  setTimeout(displayFighters, 2510)
-  setTimeout(deBugger, 2520) 
+  setTimeout(displayFighters, 2510);
+  setTimeout(showChangeGame, 2520);
 }
 
 function fighterMessage() {
-  game.gameMessage = 'Choose your fighter!'
+  game.gameMessage = 'Choose your fighter!';
   centerStatus.innerText = game.gameMessage;
-}
-
-function deBugger() {
-  reset.style.display = 'inline'
-}
+};
 
 function resetMessage() {
-  game.gameMessage = ''
+  game.gameMessage = '';
   centerStatus.innerText = game.gameMessage;
-}
+};
