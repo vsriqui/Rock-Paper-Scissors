@@ -46,18 +46,18 @@ h1, h2 {
   border-radius: 90px;
 }
 
-#difficult, #classic { 
+.center__difficult, .center__classic { 
   background-color: purple;
   width: 20vw;
   color: white;
   font-size: 1.4vw;
 }
 
-#classic {
+.center__classic {
   height: 23vh;
 }
 
-#difficult {
+.center__difficult {
   height: 28vh;
 }
 

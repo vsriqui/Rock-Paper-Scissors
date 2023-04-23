@@ -33,9 +33,9 @@ reset.onclick = function() {
 }
 
 delegator.forEach(b => b.addEventListener('click', (e) => {
-    if (e.target.id === 'classic'){
+    if (e.target.classList.contains('center__classic')){
         gameSetUp(classic);  
-    } else if (e.target.id === 'difficult'){
+    } else if (e.target.classList.contains('center__difficult')){
         gameSetUp(difficult);
     } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
         game.player1.choice = e.target.id;
@@ -62,8 +62,8 @@ function showChangeGame() {
 }
 
 function gameModes() {
-    centerPlay1.innerHTML ='<button class ="play__button" id="classic">CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
-    centerPlay2.innerHTML = ' <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
+    centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
+    centerPlay2.innerHTML = ' <button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
     reset.style.display = "none";
 }
 
