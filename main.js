@@ -167,17 +167,20 @@ function displayResults() {
 }
 
 function resetBoard() {
+  reset.style.display = "none";
   setTimeout(clearBoard, 2500);
   setTimeout(fighterMessage, 2510);
   setTimeout(displayFighters, 2510)
-  
-   
-  
+  setTimeout(deBugger, 2520) 
 }
 
 function fighterMessage() {
   game.gameMessage = 'Choose your fighter!'
   centerStatus.innerText = game.gameMessage;
+}
+
+function deBugger() {
+  reset.style.display = 'inline'
 }
 
 function resetMessage() {
