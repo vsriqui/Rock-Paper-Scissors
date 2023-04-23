@@ -5,7 +5,6 @@ var userWins = document.querySelector(".user__wins");
 var computerToken = document.querySelector(".computer__token");
 var computerName = document.querySelector(".computer__name");
 var computerWins = document.querySelector(".computer__wins");
-
 var delegator = document.querySelectorAll('.center');
 var reset = document.querySelector(".user__reset");
 var centerPlay2 = document.querySelector(".center__play2");
@@ -15,9 +14,9 @@ var centerStatus = document.querySelector(".center__status");
 // Global Variables //
 var classic = ['🪨', '📰', '✂️'];
 var difficult = ['🪨', '📰', '✂️', '🦎', '👽'];
-var userPlayer;
-var computerPlayer;
-var game;
+// var userPlayer;
+// var computerPlayer;
+// var game;
 
 // Event Listeners //
 onload = function() {
@@ -58,13 +57,13 @@ function clearBoard() {
 }
 
 function showChangeGame() {
-    reset.style.display = "inline";
+    reset.style.display = 'inline';
 }
 
 function gameModes() {
     centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
-    centerPlay2.innerHTML = ' <button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
-    reset.style.display = "none";
+    centerPlay2.innerHTML = '<button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
+    reset.style.display = 'none';
 }
 
 function createPlayer(name, token, wins) {
@@ -111,9 +110,9 @@ function aiChoice() {
 function displayFighters() {
     for (i=0; i<game.gameType.length; i++) {
         if (game.gameType[i] === '🪨' || game.gameType[i] === '📰' || game.gameType[i] === '✂️') {
-            centerPlay1.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`;
+            centerPlay1.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
         } else if (game.gameType[i] === '🦎' || game.gameType[i] === '👽') {
-            centerPlay2.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`;
+            centerPlay2.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
         }
     }
 }
@@ -163,6 +162,6 @@ function resultMessage (){
 function displayResults() {
     clearBoard()
     centerStatus.innerText = game.gameMessage;
-    centerPlay1.innerHTML += `<div class='center__${game.player1.recentResult}'> ${game.player1.choice} </div>`;
-    centerPlay1.innerHTML += `<div class='center__${game.player2.recentResult}'> ${game.player2.choice} </div>`;
+    centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.choice} </div>`;
+    centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.choice} </div>`;
 }

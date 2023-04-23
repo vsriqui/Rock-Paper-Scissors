@@ -18,19 +18,22 @@ body {
   margin: 0;
 }
 
-.user, .computer {
+.user, 
+.computer {
   background-color: #C3B1E1;
   width: 15vw;
   height: 100vh;
   text-align: center;
+}
+
+span {
+  text-align: center;
+  width: 70vw;
+  height: 7vh;
 }  
 
-h1, h2 {
-  text-align: center;
-  color: white;
-}
-  
-.center__play1, .center__play2{
+.center__play1, 
+.center__play2 {
   width: 70vw;
   height: 40vh;
   display: flex;
@@ -39,43 +42,57 @@ h1, h2 {
   justify-content: space-evenly;
 }
 
-
-.center__won, .center__lost, .center__draw, #🪨, #📰, #✂️, #🦎, #👽 { 
-  background-color: transparent;
-  font-size: 14em;
-  border-radius: 90px;
+h1 {
+  font-size: 3vw;
 }
 
-.center__difficult, .center__classic { 
+h2 {
+  font-size: 1.7vw;
+}
+
+h1, h2 {
+  text-align: center;
+  color: white;
+}
+
+.center__difficult, 
+.center__classic { 
   background-color: purple;
-  width: 20vw;
+  width: 10em;
   color: white;
   font-size: 1.4vw;
 }
 
 .center__classic {
-  height: 23vh;
+  height: 9em;
 }
 
 .center__difficult {
-  height: 28vh;
+  height: 11em;
 }
 
-span {
-  text-align: center;
-  width: 70vw;
-  height: 7vh;
+.center__fighter, 
+.center__difficult, 
+.center__classic, 
+.user__reset {
+  cursor: grab;
 }
 
-.center__status {
-  display: inline;
+.center__won, 
+.center__lost, 
+.center__draw, 
+.center__fighter { 
+  background-color: transparent;
+  font-size: 12vw;
+  border-radius: 90px;
 }
 
 .user__reset {
   background-color: purple;
   color: white;
-  width: 13em;
-  height: 5em;
+  width: 12vw;
+  height: 5vh;
+  font-size: 1vw;
   margin-top: 10em
 }
 
@@ -100,7 +117,8 @@ span {
   100% { transform: translate3d(0,10%,0) translate(0px, 0px) rotate(25deg); }    
 }
 
-.center__lost, .center__draw {
+.center__lost, 
+.center__draw {
   animation: sad 0.8s;
   animation-iteration-count: infinite;
 }
