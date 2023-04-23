@@ -25,7 +25,8 @@ onload = function() {
 
 reset.onclick = function() {    
   reset.style.display = "none";
-  gameModes();    
+  gameModes();
+  resetMessage();    
 };
 
 delegator.forEach(b => b.addEventListener('click', (e) => {
@@ -105,6 +106,7 @@ function aiChoice() {
 };
 
 function displayFighters() {
+  fighterMessage()
   for (i=0; i<game.gameType.length; i++) {
     if (game.gameType[i] === '🪨' || game.gameType[i] === '📰' || game.gameType[i] === '✂️') {
       centerPlay1.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
@@ -161,4 +163,24 @@ function displayResults() {
   centerStatus.innerText = game.gameMessage;
   centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.choice} </div>`;
   centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.choice} </div>`;
+  resetBoard()
+}
+
+function resetBoard() {
+  setTimeout(clearBoard, 2500);
+  setTimeout(fighterMessage, 2510);
+  setTimeout(displayFighters, 2510)
+  
+   
+  
+}
+
+function fighterMessage() {
+  game.gameMessage = 'Choose your fighter!'
+  centerStatus.innerText = game.gameMessage;
+}
+
+function resetMessage() {
+  game.gameMessage = ''
+  centerStatus.innerText = game.gameMessage;
 }
