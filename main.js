@@ -163,6 +163,6 @@ function resultMessage (){
 function displayResults() {
     clearBoard()
     centerStatus.innerText = game.gameMessage;
-    centerPlay1.innerHTML += `<div id='${game.player1.recentResult}'> ${game.player1.choice} </div>`;
-    centerPlay1.innerHTML += `<div id='${game.player2.recentResult}'> ${game.player2.choice} </div>`;
+    centerPlay1.innerHTML += `<div class='center__${game.player1.recentResult}'> ${game.player1.choice} </div>`;
+    centerPlay1.innerHTML += `<div class='center__${game.player2.recentResult}'> ${game.player2.choice} </div>`;
 }
