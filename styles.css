@@ -43,36 +43,31 @@
   width: 70vw;
   height: 40vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-evenly;
  }
 
+ #🪨, #📄, #✂️, #🦎, #👽 { 
+  background-color: transparent;
+  font-size: 13vw;
+  border-radius: 90px;
+ }
 
-
-
-
-#difficult, #classic {
-  display: inline;
+#difficult, #classic { 
   background-color: purple;
   width: 20vw;
-  height: 20vh;
-  
-  
   color: white;
-  font-size: 18px;
+  font-size: 1.4vw;
 }
 
+#classic {
+  height: 23vh;
+}
 #difficult {
   height: 27vh;
 }
 
 
 
-.user_reset {
-  display: none;
-}
 
-#0, #1, #2, 3#, #4, 5# {
-  display: inline
-}

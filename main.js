@@ -5,7 +5,7 @@ var computerToken = document.querySelector(".computer__token");
 var computerName = document.querySelector(".computer__name");
 var computerWins = document.querySelector(".computer__wins");
 
-var bubbler = document.querySelectorAll('.center');
+var delegator = document.querySelectorAll('.center');
 var classicButton = document.getElementById("classic");
 var difficultButton = document.getElementById("difficult");
 var reset = document.querySelector(".user__reset");
@@ -22,43 +22,37 @@ updateUsers();
 gameModes();
 }
 
-reset.onclick = function() {
-    // (classicButton.style.display ="inline") && (difficultButton.style.display="inline");
-    console.log('hey')
+reset.onclick = function() {    
     reset.style.display = "none";
     gameModes();    
 }
 
 function gameModes(){
     centerPlay1.innerHTML ='<button class ="play__button" id="classic">CLASSIC <br><br> 🪨 > ✂️ <br> 📄 > 🪨 <br> ✂️ > 📄 </button>';
-    centerPlay2.innerHTML = ' <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📄 > 🪨 & 👽 <br> ✂️ > 📄 & 🦎 <br> 🦎 > 📄 & 👽 <br> 👽 > 📄 & 🪨 <br></button>';
+    centerPlay2.innerHTML = ' <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📄 > 🪨 & 👽 <br> ✂️ > 📄 & 🦎 <br> 🦎 > 📄 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
+    reset.style.display = "none";
 }
 
-bubbler.forEach(b => b.addEventListener('click', (e) => {
-    
+delegator.forEach(b => b.addEventListener('click', (e) => {
     if (e.target.id === 'classic'){
-        console.log('HOWDY DO')
         game = createGame(classic);
-        // (classicButton.style.display ="none") && (difficultButton.style.display="none");
         centerPlay2.innerHTML = '';
         centerPlay1.innerHTML = '';
         reset.style.display = "inline";
         displayFighters();   
     } else if (e.target.id === 'difficult'){
-        console.log('Nuh, Uhh')
         game = createGame(difficult);
         centerPlay2.innerHTML = '';
         centerPlay1.innerHTML = '';
-        // (classicButton.style.display ="none") && (difficultButton.style.display="none");
         reset.style.display = "inline";
         displayFighters();  
     } else if (e.target.id === '🪨' || e.target.id === '📄' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
         console.log('wwowwwooooh');
         game.player1.choice = e.target.id;
         aiChoice();
+        decideWinner();
     }
-    
-  }))
+}))
 
 function createPlayer(name, token, wins) {
     return {
@@ -73,6 +67,7 @@ function createGame(gameType){
       player1: userPlayer,
       player2: computerPlayer,
       gameType: gameType,
+      draws: 0,
     };
 }
     
@@ -111,7 +106,7 @@ function aiChoice() {
       if (random === 5) {
         game.player2.choice = '👽'
       }
-      return game
+      // return game
     }
 
   
@@ -131,4 +126,52 @@ function displayFighters() {
             centerPlay2.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`
         }
     }
+}
+
+function decideWinner() {
+  if (game.player1.choice === game.player2.choice){
+    game.player1.recentResult = 'draw'
+    console.log('draw')
+  } else if (game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')){
+    game.player1.recentResult = 'won'
+    console.log('winner')
+  } else if (game.player1.choice === '📄' && (game.player2.choice === '🪨' || game.player2.choice === '👽')){
+    game.player1.recentResult = 'won'
+    console.log('winner')
+  } else if (game.player1.choice === '✂️' && (game.player2.choice === '📄' || game.player2.choice === '🦎')){
+    game.player1.recentResult = 'won'
+    console.log('winner')
+  } else if (game.player1.choice === '🦎' && (game.player2.choice === '📄' || game.player2.choice === '👽')){
+    game.player1.recentResult = 'won'
+    console.log('winner')
+  } else if (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨')){
+    game.player1.recentResult = 'won'
+    console.log('winner')
+  } else {
+    game.player1.recentResult = 'lost'
+    console.log('loser')
+  }
+  counter()
+  resultMessage()
+}
+
+function counter() {
+  if (game.player1.recentResult === 'won'){
+    game.player1.wins += 1;     
+  } else if (game.player1.recentResult === 'lost'){
+    game.player2.wins += 1;   
+  } else {
+    game.draws += 1;
+  }
+  updateUsers()
+}
+
+function resultMessage (){
+  if (game.player1.recentResult === 'won'){ 
+    game.gameMessage = `${game.player1.token} ${game.player1.name} won this round! ${game.player1.token}`;
+  } else if (game.player1.recentResult === 'lost'){ 
+    game.gameMessage = `${game.player2.token} ${game.player2.name} won this round! ${game.player2.token}`;
+  } else {
+    game.gameMessage = `😭 It's a ${game.player1.recentResult} 😭`
+  }
 }
