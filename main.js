@@ -25,16 +25,16 @@ onload = function() {
 
 reset.onclick = function() {    
   gameModes();
-  resetMessage();    
+  resetMessage();   
 };
 
-delegator.forEach(b => b.addEventListener('click', (e) => {
+delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
   if (e.target.classList.contains('center__classic')){
     gameSetUp(classic);  
   } else if (e.target.classList.contains('center__difficult')){
     gameSetUp(difficult);
   } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
-    game.player1.choice = e.target.id;
+    game.player1.latestChoice = e.target.id;
     aiChoice();
     decideWinner();
   } 
@@ -62,6 +62,7 @@ function createPlayer(name, token, wins) {
     name: name,
     token: token,
     wins: wins,
+    draws: 0,
   }
 };
 
@@ -102,21 +103,21 @@ function displayFighters() {
 
 function aiChoice() {
   var random = Math.floor(Math.random() * game.gameType.length);
-  game.player2.choice = game.gameType[random];
+  game.player2.latestChoice = game.gameType[random];
 };
 
 function decideWinner() {
-  if (game.player1.choice === game.player2.choice){
+  if (game.player1.latestChoice === game.player2.latestChoice){
     (game.player1.recentResult = 'draw') && (game.player2.recentResult = 'draw');
-  } else if (game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')){
+  } else if (game.player1.latestChoice === '🪨' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🦎')){
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')){
+  } else if (game.player1.latestChoice === '📰' && (game.player2.latestChoice === '🪨' || game.player2.latestChoice === '👽')){
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')){
+  } else if (game.player1.latestChoice === '✂️' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '🦎')){
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')){
+  } else if (game.player1.latestChoice === '🦎' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '👽')){
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨')){
+  } else if (game.player1.latestChoice === '👽' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🪨')){
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
   } else {
     (game.player1.recentResult = 'lost') && (game.player2.recentResult = 'won');
@@ -131,7 +132,8 @@ function counter() {
   } else if (game.player1.recentResult === 'lost'){
     game.player2.wins += 1;   
   } else {
-    game.draws += 1;
+    game.player1.draws += 1;
+    game.player2.draws += 1
   }
   updateUsers();
 };
@@ -147,28 +149,34 @@ function resultMessage (){
   displayResults();
 };
 
+function fighterMessage() {
+  game.gameMessage = 'Choose your fighter!';
+  updateMessage;
+};
+
+function resetMessage() {
+  game.gameMessage = '';
+  updateMessage;
+};
+
+function updateMessage() {
+  centerStatus.innerText = game.gameMessage;
+};
+
 function displayResults() {
   clearBoard();
-  centerStatus.innerText = game.gameMessage;
-  centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.choice} </div>`;
-  centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.choice} </div>`;
+  updateMessage;
+  centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.latestChoice} </div>`;
+  centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.latestChoice} </div>`;
   resetBoard()
-}
+};
 
 function resetBoard() {
+  resetMessage();
   reset.style.display = "none";
   setTimeout(clearBoard, 2500);
   setTimeout(fighterMessage, 2510);
   setTimeout(displayFighters, 2510);
   setTimeout(showChangeGame, 2520);
-}
-
-function fighterMessage() {
-  game.gameMessage = 'Choose your fighter!';
-  centerStatus.innerText = game.gameMessage;
 };
 
-function resetMessage() {
-  game.gameMessage = '';
-  centerStatus.innerText = game.gameMessage;
-};
