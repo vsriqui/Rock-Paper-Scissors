@@ -71,7 +71,6 @@ function createGame(gameType) {
     player1: userPlayer,
     player2: computerPlayer,
     gameType: gameType,
-    draws: 0,
   }
 };
 
@@ -106,18 +105,34 @@ function aiChoice() {
   game.player2.latestChoice = game.gameType[random];
 };
 
+// function decideWinner() {
+//   if (game.player1.latestChoice === game.player2.latestChoice){
+//     (game.player1.recentResult = 'draw') && (game.player2.recentResult = 'draw');
+//   } else if (game.player1.latestChoice === '🪨' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🦎')){
+//     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+//   } else if (game.player1.latestChoice === '📰' && (game.player2.latestChoice === '🪨' || game.player2.latestChoice === '👽')){
+//     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+//   } else if (game.player1.latestChoice === '✂️' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '🦎')){
+//     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+//   } else if (game.player1.latestChoice === '🦎' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '👽')){
+//     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+//   } else if (game.player1.latestChoice === '👽' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🪨')){
+//     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+//   } else {
+//     (game.player1.recentResult = 'lost') && (game.player2.recentResult = 'won');
+//   }
+//     counter();
+//     resultMessage();
+// };
+
 function decideWinner() {
   if (game.player1.latestChoice === game.player2.latestChoice){
     (game.player1.recentResult = 'draw') && (game.player2.recentResult = 'draw');
-  } else if (game.player1.latestChoice === '🪨' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🦎')){
-    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.latestChoice === '📰' && (game.player2.latestChoice === '🪨' || game.player2.latestChoice === '👽')){
-    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.latestChoice === '✂️' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '🦎')){
-    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.latestChoice === '🦎' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '👽')){
-    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-  } else if (game.player1.latestChoice === '👽' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🪨')){
+  } else if ((game.player1.latestChoice === '🪨' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🦎')) ||
+    (game.player1.latestChoice === '📰' && (game.player2.latestChoice === '🪨' || game.player2.latestChoice === '👽')) ||
+    (game.player1.latestChoice === '✂️' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '🦎')) ||
+    (game.player1.latestChoice === '🦎' && (game.player2.latestChoice === '📰' || game.player2.latestChoice === '👽')) ||
+    (game.player1.latestChoice === '👽' && (game.player2.latestChoice === '✂️' || game.player2.latestChoice === '🪨'))) {
     (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
   } else {
     (game.player1.recentResult = 'lost') && (game.player2.recentResult = 'won');
