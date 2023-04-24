@@ -5,7 +5,6 @@ var userWins = document.querySelector(".user__wins");
 var computerToken = document.querySelector(".computer__token");
 var computerName = document.querySelector(".computer__name");
 var computerWins = document.querySelector(".computer__wins");
-
 var delegator = document.querySelectorAll('.center');
 var reset = document.querySelector(".user__reset");
 var centerPlay2 = document.querySelector(".center__play2");
@@ -15,154 +14,161 @@ var centerStatus = document.querySelector(".center__status");
 // Global Variables //
 var classic = ['🪨', '📰', '✂️'];
 var difficult = ['🪨', '📰', '✂️', '🦎', '👽'];
-var userPlayer;
-var computerPlayer;
-var game;
 
 // Event Listeners //
 onload = function() {
-    userPlayer = createPlayer('Human', '👩🏻', 0);
-    computerPlayer = createPlayer('Computer', '💻', 0);
-    updateUsers();
-    gameModes();
-}
+  userPlayer = createPlayer('Human', '👩🏻', 0);
+  computerPlayer = createPlayer('Computer', '💻', 0);
+  updateUsers();
+  gameModes();
+};
 
 reset.onclick = function() {    
-    reset.style.display = "none";
-    gameModes();    
-}
+  gameModes();
+  resetMessage();    
+};
 
 delegator.forEach(b => b.addEventListener('click', (e) => {
-    if (e.target.id === 'classic'){
-        gameSetUp(classic);  
-    } else if (e.target.id === 'difficult'){
-        gameSetUp(difficult);
-    } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
-        game.player1.choice = e.target.id;
-        aiChoice();
-        decideWinner();
-    }
-}))
+  if (e.target.classList.contains('center__classic')){
+    gameSetUp(classic);  
+  } else if (e.target.classList.contains('center__difficult')){
+    gameSetUp(difficult);
+  } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
+    game.player1.choice = e.target.id;
+    aiChoice();
+    decideWinner();
+  } 
+}));
 
 // Functions and Event Handlers //
 function gameSetUp(type) {
-    game = createGame(type);
-    clearBoard();
-    showChangeGame();
-    displayFighters(); 
-}
+  game = createGame(type);
+  clearBoard();
+  showChangeGame();
+  displayFighters(); 
+};
 
 function clearBoard() {
-    centerPlay2.innerHTML = '';
-    centerPlay1.innerHTML = '';
-}
+  centerPlay2.innerHTML = '';
+  centerPlay1.innerHTML = '';
+};
 
 function showChangeGame() {
-    reset.style.display = "inline";
-}
-
-function gameModes() {
-    centerPlay1.innerHTML ='<button class ="play__button" id="classic">CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
-    centerPlay2.innerHTML = ' <button class ="play__button" id="difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
-    reset.style.display = "none";
-}
+  reset.style.display = 'inline';
+};
 
 function createPlayer(name, token, wins) {
-    return {
-        name: name,
-        token: token,
-        wins: wins,
-    }
-}
+  return {
+    name: name,
+    token: token,
+    wins: wins,
+  }
+};
 
 function createGame(gameType) {
-    return {
-      player1: userPlayer,
-      player2: computerPlayer,
-      gameType: gameType,
-      draws: 0,
-    };
-}
+  return {
+    player1: userPlayer,
+    player2: computerPlayer,
+    gameType: gameType,
+    draws: 0,
+  }
+};
+
+function gameModes() {
+  centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
+  centerPlay2.innerHTML = '<button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
+  reset.style.display = 'none';
+};
 
 function updateUsers() {
-    userToken.innerText = userPlayer.token;
-    userName.innerText = userPlayer.name;
-    userWins.innerText = `Wins: ${userPlayer.wins}`;
-    computerToken.innerText = computerPlayer.token;
-    computerName.innerText = computerPlayer.name;
-    computerWins.innerText = `Wins: ${computerPlayer.wins}`;
-}
-
-function aiChoice() {
-    var random = Math.floor(Math.random() * game.gameType.length) + 1;
-    if (random === 1) {
-        game.player2.choice = '🪨';
-    } else if (random === 2) {
-        game.player2.choice = '📰';
-    } else if (random === 3) {
-        game.player2.choice = '✂️';
-    } else if (random === 4) {
-        game.player2.choice = '🦎';
-    } else if (random === 5) {
-        game.player2.choice = '👽';
-    }
-}
+  userToken.innerText = userPlayer.token;
+  userName.innerText = userPlayer.name;
+  userWins.innerText = `Wins: ${userPlayer.wins}`;
+  computerToken.innerText = computerPlayer.token;
+  computerName.innerText = computerPlayer.name;
+  computerWins.innerText = `Wins: ${computerPlayer.wins}`;
+};
 
 function displayFighters() {
-    for (i=0; i<game.gameType.length; i++) {
-        if (game.gameType[i] === '🪨' || game.gameType[i] === '📰' || game.gameType[i] === '✂️') {
-            centerPlay1.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`;
-        } else if (game.gameType[i] === '🦎' || game.gameType[i] === '👽') {
-            centerPlay2.innerHTML += `<button id='${game.gameType[i]}'> ${game.gameType[i]} </button>`;
-        }
+  fighterMessage()
+  for (i=0; i<game.gameType.length; i++) {
+    if (game.gameType[i] === '🪨' || game.gameType[i] === '📰' || game.gameType[i] === '✂️') {
+      centerPlay1.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
+    } else if (game.gameType[i] === '🦎' || game.gameType[i] === '👽') {
+      centerPlay2.innerHTML += `<button class="center__fighter" id="${game.gameType[i]}"> ${game.gameType[i]} </button>`;
     }
-}
+  }
+};
+
+function aiChoice() {
+  var random = Math.floor(Math.random() * game.gameType.length);
+  game.player2.choice = game.gameType[random];
+};
 
 function decideWinner() {
-    if (game.player1.choice === game.player2.choice){
-        (game.player1.recentResult = 'draw') && (game.player2.recentResult = 'draw');
-    } else if (game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')){
-        (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-    } else if (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')){
-        (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-    } else if (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')){
-        (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-    } else if (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')){
-        (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-    } else if (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨')){
-        (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
-    } else {
-        (game.player1.recentResult = 'lost') && (game.player2.recentResult = 'won');
-    }
-    counter()
-    resultMessage()
-}
+  if (game.player1.choice === game.player2.choice){
+    (game.player1.recentResult = 'draw') && (game.player2.recentResult = 'draw');
+  } else if (game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')){
+    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+  } else if (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')){
+    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+  } else if (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')){
+    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+  } else if (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')){
+    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+  } else if (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨')){
+    (game.player1.recentResult = 'won') && (game.player2.recentResult = 'lost');
+  } else {
+    (game.player1.recentResult = 'lost') && (game.player2.recentResult = 'won');
+  }
+    counter();
+    resultMessage();
+};
 
 function counter() {
-    if (game.player1.recentResult === 'won'){
-        game.player1.wins += 1;     
-    } else if (game.player1.recentResult === 'lost'){
-        game.player2.wins += 1;   
-    } else {
-        game.draws += 1;
-    }
-    updateUsers()
-}
+  if (game.player1.recentResult === 'won'){
+    game.player1.wins += 1;     
+  } else if (game.player1.recentResult === 'lost'){
+    game.player2.wins += 1;   
+  } else {
+    game.draws += 1;
+  }
+  updateUsers();
+};
 
 function resultMessage (){
-    if (game.player1.recentResult === 'won'){ 
-        game.gameMessage = `${game.player1.token} ${game.player1.name} won this round! ${game.player1.token}`;
-    } else if (game.player1.recentResult === 'lost'){ 
-        game.gameMessage = `${game.player2.token} ${game.player2.name} won this round! ${game.player2.token}`;
-    } else {
-        game.gameMessage = `😭 It's a ${game.player1.recentResult} 😭`;
-    }
-    displayResults();
-}
+  if (game.player1.recentResult === 'won'){ 
+    game.gameMessage = `${game.player1.token} ${game.player1.name} won this round! ${game.player1.token}`;
+  } else if (game.player1.recentResult === 'lost'){ 
+    game.gameMessage = `${game.player2.token} ${game.player2.name} won this round! ${game.player2.token}`;
+  } else {
+    game.gameMessage = `😭 It's a ${game.player1.recentResult} 😭`;
+  }
+  displayResults();
+};
 
 function displayResults() {
-    clearBoard()
-    centerStatus.innerText = game.gameMessage;
-    centerPlay1.innerHTML += `<div id='${game.player1.recentResult}'> ${game.player1.choice} </div>`;
-    centerPlay1.innerHTML += `<div id='${game.player2.recentResult}'> ${game.player2.choice} </div>`;
+  clearBoard();
+  centerStatus.innerText = game.gameMessage;
+  centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.choice} </div>`;
+  centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.choice} </div>`;
+  resetBoard()
 }
+
+function resetBoard() {
+  reset.style.display = "none";
+  setTimeout(clearBoard, 2500);
+  setTimeout(fighterMessage, 2510);
+  setTimeout(displayFighters, 2510);
+  setTimeout(showChangeGame, 2520);
+}
+
+function fighterMessage() {
+  game.gameMessage = 'Choose your fighter!';
+  centerStatus.innerText = game.gameMessage;
+};
+
+function resetMessage() {
+  game.gameMessage = '';
+  centerStatus.innerText = game.gameMessage;
+};
