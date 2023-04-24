@@ -56,6 +56,7 @@ h1, h2 {
   width: 10em;
   color: white;
   font-size: 1.4vw;
+  margin-bottom: 5vh;
 }
 
 .center__classic {
@@ -71,6 +72,7 @@ h1, h2 {
 .center__classic, 
 .user__reset {
   cursor: grab;
+  transition: all .4s ease-in-out
 }
 
 .center__won, 
@@ -83,10 +85,14 @@ h1, h2 {
   border: none;
 }
 
+.center__fighter:hover, .center__difficult:hover, .center__classic:hover, .user__reset:hover {
+  transform: scale(1.3)
+}
+
 .user__reset {
   background-color: purple;
   color: white;
-  width: 12vw;
+  width: 11vw;
   height: 5vh;
   font-size: 1vw;
   margin-top: 11em
