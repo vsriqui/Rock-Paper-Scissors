@@ -112,16 +112,13 @@ h1, h2 {
 }
 
 @keyframes sad {
-  0% { transform: translate3d(0,10%,0) translate(3px, 3px) rotate(45deg); }  
-  25% { transform: translate3d(0,5%,0) translate(-3px, 0px) rotate(15deg); }  
-  50% { transform: translate3d(0,10%,0) translate(0px, -3px) rotate(45deg); }  
-  75% { transform: translate3d(0,5%,0) translate(-3px, -3px) rotate(15deg); }  
-  100% { transform: translate3d(0,10%,0) translate(0px, 0px) rotate(45deg); }    
+  0% { transform: translate3d(0,10%,0) translate(0px, 0px) rotate(0deg); }
+  100% { transform: translate3d(0,20%,0) translate(0px, 500px) rotate(90deg); }    
 }
 
 .center__lost, 
 .center__draw {
-  animation: sad 0.8s;
+  animation: sad 2.6s;
   animation-iteration-count: infinite;
 }
 
