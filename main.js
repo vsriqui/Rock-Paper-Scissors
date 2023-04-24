@@ -151,12 +151,12 @@ function resultMessage (){
 
 function fighterMessage() {
   game.gameMessage = 'Choose your fighter!';
-  updateMessage;
+  updateMessage();
 };
 
 function resetMessage() {
   game.gameMessage = '';
-  updateMessage;
+  updateMessage();
 };
 
 function updateMessage() {
@@ -165,14 +165,13 @@ function updateMessage() {
 
 function displayResults() {
   clearBoard();
-  updateMessage;
+  updateMessage();
   centerPlay1.innerHTML += `<div class="center__${game.player1.recentResult}"> ${game.player1.latestChoice} </div>`;
   centerPlay1.innerHTML += `<div class="center__${game.player2.recentResult}"> ${game.player2.latestChoice} </div>`;
   resetBoard()
 };
 
 function resetBoard() {
-  resetMessage();
   reset.style.display = "none";
   setTimeout(clearBoard, 2500);
   setTimeout(fighterMessage, 2510);
