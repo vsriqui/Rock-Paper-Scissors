@@ -10,8 +10,6 @@ var reset = document.querySelector(".user__reset");
 var centerPlay2 = document.querySelector(".center__play2");
 var centerPlay1 = document.querySelector(".center__play1");
 var centerStatus = document.querySelector(".center__status");
-
-// Global Variables //
 var classic = ['🪨', '📰', '✂️'];
 var difficult = ['🪨', '📰', '✂️', '🦎', '👽'];
 
