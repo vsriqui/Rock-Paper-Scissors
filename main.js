@@ -171,16 +171,16 @@ function resetBoard() {
 };
 
 function clearGameData() {
-  game.gametype = undefined;
-  game.gameMessage = undefined;
+  game.gametype = null;
+  game.gameMessage = null;
   clearPlayerChoices();  
   updateMessage();
 };
 
 function clearPlayerChoices() {
-  game.player1.playerResult = undefined;
-  game.player2.playerResult = undefined; 
-  game.player1.choice = undefined; 
-  game.player2.choice = undefined;   
+  game.player1.playerResult = null;
+  game.player2.playerResult = null; 
+  game.player1.choice = null; 
+  game.player2.choice = null;   
 };
 
