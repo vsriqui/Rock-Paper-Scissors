@@ -1,15 +1,15 @@
 # Rock-Paper-Scissors
 
-##Abstract:
+## Abstract:
 
-##Installation Instructions:
+## Installation Instructions:
 
-##Preview of App:
+## Preview of App:
 
-##Context:
+## Context:
 
-##Contributors:
+## Contributors:
 
-##Learning Goals:
+## Learning Goals:
 
-##Wins + Challenges:
+## Wins + Challenges:
