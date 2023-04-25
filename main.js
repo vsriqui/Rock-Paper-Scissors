@@ -29,7 +29,6 @@ reset.onclick = function() {
 };
 
 delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
-  console.log(delegator)
   if (e.target.classList.contains('center__classic')){
     gameSetUp(classic);  
   } else if (e.target.classList.contains('center__difficult')){
@@ -53,6 +52,10 @@ function clearBoard() {
   centerPlay2.innerHTML = '';
   centerPlay1.innerHTML = '';
 };
+
+function hideChangeGame() {
+  reset.style.display = 'none';
+}
 
 function showChangeGame() {
   reset.style.display = 'inline';
@@ -78,7 +81,7 @@ function createGame(gameType) {
 function gameModes() {
   centerPlay1.innerHTML ='<button class ="center__classic"> CLASSIC <br><br> 🪨 > ✂️ <br> 📰 > 🪨 <br> ✂️ > 📰 </button>';
   centerPlay2.innerHTML = '<button class ="center__difficult">DIFFICULT <br><br> 🪨 > ✂️ & 🦎 <br> 📰 > 🪨 & 👽 <br> ✂️ > 📰 & 🦎 <br> 🦎 > 📰 & 👽 <br> 👽 > ✂️ & 🪨 <br></button>';
-  reset.style.display = 'none';
+  hideChangeGame();
 };
 
 function updateUsers() {
@@ -163,7 +166,7 @@ function displayResults() {
 };
 
 function resetBoard() {
-  reset.style.display = "none";  
+  hideChangeGame();  
   setTimeout(clearBoard, 2500);
   setTimeout(clearPlayerChoices, 2500);
   setTimeout(fighterMessage, 2510);  
@@ -173,8 +176,7 @@ function resetBoard() {
 
 function clearGameData() {
   game.gametype = null;
-  game.gameMessage = null;
-  clearPlayerChoices();  
+  game.gameMessage = null;  
   updateMessage();
 };
 
