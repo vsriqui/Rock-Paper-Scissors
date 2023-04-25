@@ -121,7 +121,6 @@ h1, h2 {
 }
 
 .center__won {
-  margin-top: 1em;
   transform-origin: 50%;
   animation: jumpJoy .6s infinite;
 }
