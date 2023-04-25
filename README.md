@@ -20,7 +20,8 @@ I built an app for playing rock-paper-scissors. It also includes a more complica
 The project was assigned in week 5 of Turing Module 4, and I was given 9 days to finish the project. I likely spent 14-16 hours on the coding aspects of it, perhaps 6-10 refactoring and researching. It was a fun project, and I quite enjoyed it.
 
 ## Contributors:
-[Victor Sriqui](https://github.com/vsriqui)
+![7jdnm4 (1)](https://user-images.githubusercontent.com/123952182/234168667-b9edfb55-ff85-494d-bf07-42691bb34948.gif)
+
 
 ## Learning Goals:
 
