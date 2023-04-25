@@ -29,6 +29,7 @@ reset.onclick = function() {
 };
 
 delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
+  console.log(delegator)
   if (e.target.classList.contains('center__classic')){
     gameSetUp(classic);  
   } else if (e.target.classList.contains('center__difficult')){

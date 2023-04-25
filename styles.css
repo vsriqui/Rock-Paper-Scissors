@@ -65,15 +65,15 @@ h1, h2 {
   width: 10em;
   color: white;
   font-size: 1.3vw;
-  margin-bottom: 6vh;
+  margin: 3em;
 }
 
 .center__classic {
-  height: 9em;
+  height: 10em;
 }
 
 .center__difficult {
-  height: 12em;
+  height: 13em;
 }
 
 .center__fighter, 
@@ -87,7 +87,7 @@ h1, h2 {
 .center__won, 
 .center__lost, 
 .center__draw, 
-.center__fighter { 
+.center__fighter {
   background-color: transparent;
   font-size: 10vw;
   border-radius: 90px;
@@ -116,6 +116,7 @@ h1, h2 {
 }
 
 .center__won {
+  margin-top: 1em;
   transform-origin: 50%;
   animation: jumpJoy .5s infinite;
 }
@@ -127,6 +128,7 @@ h1, h2 {
 
 .center__lost, 
 .center__draw {
+  margin-top: 1em;
   animation: sad 2.6s;
   animation-iteration-count: infinite;
 }
