@@ -1,14 +1,5 @@
-/* * {
-    border: 1px solid red;
-  } */
-  
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 70vw;
-  height: 100vh;
-  background-color: #CBC3E3;
+* {
+  font-family: 'Khula', sans-serif;
 }
 
 body {
@@ -16,11 +7,20 @@ body {
   width: 100vw;
   display: flex;
   margin: 0;
+}  
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70vw;
+  height: 100vh;
+  background-color: #c66af0;
 }
 
 .user, 
 .computer {
-  background-color: #C3B1E1;
+  background-color: #cc83ef;
   width: 15vw;
   height: 100vh;
   text-align: center;
@@ -29,7 +29,7 @@ body {
 .center__play1, 
 .center__play2 {
   width: 70vw;
-  height: 40vh;
+  max-height: 40vh;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -39,10 +39,19 @@ body {
 h1 {
   font-size: 3vw;
   margin-bottom: 0px;
+  font-weight: 700;
 }
 
 h2 {
+  font-weight: 300;
+}
+
+.user__name, .computer__name, .user__token, .computer__token, .center__status {
   font-size: 1.7vw;
+}
+
+.user__wins, .computer__wins {
+  font-size: 1vw,
 }
 
 h1, h2 {
@@ -52,19 +61,19 @@ h1, h2 {
 
 .center__difficult, 
 .center__classic { 
-  background-color: purple;
+  background-color: #aa49da;
   width: 10em;
   color: white;
-  font-size: 1.4vw;
-  margin-bottom: 5vh;
+  font-size: 1.3vw;
+  margin: 3em;
 }
 
 .center__classic {
-  height: 9em;
+  height: 10em;
 }
 
 .center__difficult {
-  height: 11em;
+  height: 13em;
 }
 
 .center__fighter, 
@@ -78,23 +87,23 @@ h1, h2 {
 .center__won, 
 .center__lost, 
 .center__draw, 
-.center__fighter { 
+.center__fighter {
   background-color: transparent;
-  font-size: 12vw;
+  font-size: 10vw;
   border-radius: 90px;
   border: none;
 }
 
 .center__fighter:hover, .center__difficult:hover, .center__classic:hover, .user__reset:hover {
-  transform: scale(1.3)
+  transform: scale(1.2)
 }
 
 .user__reset {
-  background-color: purple;
+  background-color: #aa49da;
   color: white;
   width: 11vw;
   height: 5vh;
-  font-size: 1vw;
+  font-size: 1.1vw;
   margin-top: 11em
 }
 
@@ -107,17 +116,19 @@ h1, h2 {
 }
 
 .center__won {
+  margin-top: 1em;
   transform-origin: 50%;
   animation: jumpJoy .5s infinite;
 }
 
 @keyframes sad {
   0% { transform: translate3d(0,10%,0) translate(0px, 0px) rotate(0deg); }
-  100% { transform: translate3d(0,20%,0) translate(0px, 500px) rotate(90deg); }    
+  100% { transform: translate3d(0,20%,0) translate(0px, 300px) rotate(90deg); }    
 }
 
 .center__lost, 
 .center__draw {
+  margin-top: 1em;
   animation: sad 2.6s;
   animation-iteration-count: infinite;
 }
