@@ -29,7 +29,6 @@ reset.addEventListener('click', function() {
 
 function boardListener() {
   delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
-
     if (e.target.classList.contains('center__classic')){
       gameSetUp(classic);  
     } else if (e.target.classList.contains('center__difficult')){
@@ -110,22 +109,6 @@ function aiChoice() {
   var random = Math.floor(Math.random() * game.gameType.length);
   game.player2.choice = game.gameType[random];
 };
-
-// function decideWinner() {
-//   if (game.player1.choice === game.player2.choice){
-//     (game.player1.playerResult = 'draw') && (game.player2.playerResult = 'draw');
-//   } else if ((game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')) ||
-//     (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')) ||
-//     (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')) ||
-//     (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')) ||
-//     (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨'))) {
-//     (game.player1.playerResult = 'won') && (game.player2.playerResult = 'lost');
-//   } else {
-//     (game.player1.playerResult = 'lost') && (game.player2.playerResult = 'won');
-//   }
-//     counter();
-//     resultMessage();
-// };
 
 function decideWinner() {
   var winConditions = [['🪨', '✂️', '🦎'], ['📰', '🪨', '👽'], ['✂️', '📰', '🦎'], ['🦎', '📰', '👽'], ['👽', '✂️', '🪨']];
