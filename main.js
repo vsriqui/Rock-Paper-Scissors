@@ -14,29 +14,33 @@ var classic = ['🪨', '📰', '✂️'];
 var difficult = ['🪨', '📰', '✂️', '🦎', '👽'];
 
 // Event Listeners //
-onload = function() {
+window.onload = function() {
   userPlayer = createPlayer('Human', '👩🏻', 0);
   computerPlayer = createPlayer('Computer', '💻', 0);
   updateUsers();
   gameModes();
+  boardListener();
 };
 
-reset.onclick = function() {    
+reset.addEventListener('click', function() {    
   gameModes();
   clearGameData();   
-};
+});
 
-delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
-  if (e.target.classList.contains('center__classic')){
-    gameSetUp(classic);  
-  } else if (e.target.classList.contains('center__difficult')){
-    gameSetUp(difficult);
-  } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
-    game.player1.choice = e.target.id;
-    aiChoice();
-    decideWinner();
-  } 
-}));
+function boardListener() {
+  delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
+
+    if (e.target.classList.contains('center__classic')){
+      gameSetUp(classic);  
+    } else if (e.target.classList.contains('center__difficult')){
+      gameSetUp(difficult);
+    } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
+      game.player1.choice = e.target.id;
+      aiChoice();
+      decideWinner();
+    } 
+  }));
+}
 
 // Functions and Event Handlers //
 function gameSetUp(type) {
