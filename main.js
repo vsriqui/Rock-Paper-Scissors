@@ -14,29 +14,33 @@ var classic = ['🪨', '📰', '✂️'];
 var difficult = ['🪨', '📰', '✂️', '🦎', '👽'];
 
 // Event Listeners //
-onload = function() {
+window.onload = function() {
   userPlayer = createPlayer('Human', '👩🏻', 0);
   computerPlayer = createPlayer('Computer', '💻', 0);
   updateUsers();
   gameModes();
+  boardListener();
 };
 
-reset.onclick = function() {    
+reset.addEventListener('click', function() {    
   gameModes();
   clearGameData();   
-};
+});
 
-delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
-  if (e.target.classList.contains('center__classic')){
-    gameSetUp(classic);  
-  } else if (e.target.classList.contains('center__difficult')){
-    gameSetUp(difficult);
-  } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
-    game.player1.choice = e.target.id;
-    aiChoice();
-    decideWinner();
-  } 
-}));
+function boardListener() {
+  delegator.forEach(delegate => delegate.addEventListener('click', (e) => {
+
+    if (e.target.classList.contains('center__classic')){
+      gameSetUp(classic);  
+    } else if (e.target.classList.contains('center__difficult')){
+      gameSetUp(difficult);
+    } else if (e.target.id === '🪨' || e.target.id === '📰' || e.target.id === '✂️' || e.target.id === '🦎' || e.target.id === '👽') {
+      game.player1.choice = e.target.id;
+      aiChoice();
+      decideWinner();
+    } 
+  }));
+}
 
 // Functions and Event Handlers //
 function gameSetUp(type) {
@@ -107,20 +111,35 @@ function aiChoice() {
   game.player2.choice = game.gameType[random];
 };
 
+// function decideWinner() {
+//   if (game.player1.choice === game.player2.choice){
+//     (game.player1.playerResult = 'draw') && (game.player2.playerResult = 'draw');
+//   } else if ((game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')) ||
+//     (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')) ||
+//     (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')) ||
+//     (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')) ||
+//     (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨'))) {
+//     (game.player1.playerResult = 'won') && (game.player2.playerResult = 'lost');
+//   } else {
+//     (game.player1.playerResult = 'lost') && (game.player2.playerResult = 'won');
+//   }
+//     counter();
+//     resultMessage();
+// };
+
 function decideWinner() {
-  if (game.player1.choice === game.player2.choice){
-    (game.player1.playerResult = 'draw') && (game.player2.playerResult = 'draw');
-  } else if ((game.player1.choice === '🪨' && (game.player2.choice === '✂️' || game.player2.choice === '🦎')) ||
-    (game.player1.choice === '📰' && (game.player2.choice === '🪨' || game.player2.choice === '👽')) ||
-    (game.player1.choice === '✂️' && (game.player2.choice === '📰' || game.player2.choice === '🦎')) ||
-    (game.player1.choice === '🦎' && (game.player2.choice === '📰' || game.player2.choice === '👽')) ||
-    (game.player1.choice === '👽' && (game.player2.choice === '✂️' || game.player2.choice === '🪨'))) {
-    (game.player1.playerResult = 'won') && (game.player2.playerResult = 'lost');
-  } else {
-    (game.player1.playerResult = 'lost') && (game.player2.playerResult = 'won');
+  var winConditions = [['🪨', '✂️', '🦎'], ['📰', '🪨', '👽'], ['✂️', '📰', '🦎'], ['🦎', '📰', '👽'], ['👽', '✂️', '🪨']];
+  for (var i = 0; i<winConditions.length; i++) {
+    if (game.player1.choice === winConditions[i][0] && ((game.player2.choice === winConditions[i][1]) || (game.player2.choice === winConditions[i][2]))) {
+      (game.player1.playerResult = 'won') && (game.player2.playerResult = 'lost');
+    } else if (game.player1.choice === game.player2.choice){
+      (game.player1.playerResult = 'draw') && (game.player2.playerResult = 'draw');
+    } else if (game.player2.choice === winConditions[i][0] && ((game.player1.choice === winConditions[i][1]) || (game.player1.choice === winConditions[i][2]))){
+      (game.player1.playerResult = 'lost') && (game.player2.playerResult = 'won');
+    }    
   }
-    counter();
-    resultMessage();
+  counter();
+  resultMessage();
 };
 
 function counter() {
